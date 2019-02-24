@@ -33,19 +33,13 @@ class TowerOfHanoiGame(GameMaster):
         Returns:
             A Tuple of Tuples that represent the game state
         """
-        ### student code goes here
         peg1 = []
         peg2 = []
         peg3 = []
         pegs = self.kb.kb_ask(parse_input("fact: (on ?d ?p"))
         for disk in pegs:
             d = int(disk.bindings_dict['?d'][4])  # get just the number of 'diskX'
-            # d = disk.bindings_dict.bound_to
             p = int(disk.bindings_dict['?p'][3])  # get just the number of 'pegX'
-            #print("peg")
-            #print(p)
-            #print("disk")
-            #print(d)
             if p == 1:
                 peg1.append(d)
             elif p == 2:
@@ -55,9 +49,7 @@ class TowerOfHanoiGame(GameMaster):
         peg1.sort()
         peg2.sort()
         peg3.sort()
-        #print(tuple(peg1))
         world = tuple((tuple(peg1), tuple(peg2), tuple(peg3)))
-        #print(world)
         return world
 
     def makeMove(self, movable_statement):
@@ -77,10 +69,6 @@ class TowerOfHanoiGame(GameMaster):
             None
         """
         ### Student code goes here
-        #print("predicate")
-        #print(movable_statement.predicate)
-        #print("terms")
-        #print(movable_statement.terms)
         if movable_statement.predicate != 'movable':
             pass
         else:
@@ -151,19 +139,13 @@ class Puzzle8Game(GameMaster):
                 t = int(tile.bindings_dict['?t'][4])  # get just the number of tileX
             px = int(tile.bindings_dict['?px'][3])  # get just the number of 'posx'
             py = int(tile.bindings_dict['?py'][3])  # get just the number of 'posy'
-            # print("peg")
-            # print(p)
-            # print("disk")
-            # print(d)
             if py == 1:
                 row1[px-1] = t
             elif py == 2:
                 row2[px-1] = t
             elif py == 3:
                 row3[px-1] = t
-        # print(tuple(peg1))
         world = tuple((tuple(row1), tuple(row2), tuple(row3)))
-        print(world)
         return world
 
     def makeMove(self, movable_statement):
